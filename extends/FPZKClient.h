@@ -167,6 +167,7 @@ private:
 	std::string _ipv4;
 	std::string _ipv6;
 	std::string _cluster;
+	std::string _region;
 	int _port;
 	int _port6;
 	int _sslport;
@@ -210,7 +211,7 @@ public:
 	static FPZKClientPtr create(const std::string& fpzkSrvList = "", const std::string& projectName = "", const std::string& projectToken = "");
 	~FPZKClient();
 
-	bool registerService(const std::string& serviceName = "", const std::string& cluster = "", const std::string& version = "", const std::string& endpoint = "", bool online = true);
+	bool registerService(const std::string& serviceName = "", const std::string& version = "", const std::string& cluster = "", const std::string& endpoint = "", bool online = true);
 	bool registerServiceSync(const std::string& serviceName = "", const std::string& cluster = "", const std::string& version = "", const std::string& endpoint = "", bool online = true);
 	int64_t getServiceRevision(const std::string& serviceName, const std::string& cluster = "");
 	const ServiceInfosPtr getServiceInfos(const std::string& serviceName, const std::string& cluster = "", const std::string& version = "", bool onlineOnly = true);

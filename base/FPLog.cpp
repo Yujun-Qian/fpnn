@@ -144,10 +144,10 @@ void FPPipeLogBase::flush(FPLogEntry* log) {
         if ( writeBytes(_socket_fd, &routeSize, FPLOG_ROUTE_SIZE_LENGTH) &&
              writeBytes(_socket_fd, route, routeSize) &&
              writeBytes(_socket_fd, &_attrSize, FPLOG_ATTR_SIZE_LENGTH) &&
-             writeBytes(_socket_fd, &FPLog::_pid, FPLOG_PID_SIZE_LENGTH) &&
              writeBytes(_socket_fd, &bodySize, FPLOG_BODY_SIZE_LENGTH) &&
              writeBytes(_socket_fd, log->_body, bodySize)) {
             
+            /*
             int8_t ret;
             bool res = readBytes(_socket_fd, 1, &ret);
             if (!res || ret != '1') {
@@ -156,6 +156,7 @@ void FPPipeLogBase::flush(FPLogEntry* log) {
                 usleep(200000);
                 continue;
             }
+            */
             break;
         } else {
             close(_socket_fd);

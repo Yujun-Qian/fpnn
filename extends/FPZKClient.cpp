@@ -373,7 +373,7 @@ bool FPZKClient::syncSelfStatus(float perCPUUsage)
 		{
 			int addedInfoCount = _syncForPublic ? 7 : 0;
 
-			FPQWriter qw(12 + addedInfoCount, "syncServerInfo");
+			FPQWriter qw(13 + addedInfoCount, "syncServerInfo");
 			qw.param("project", _projectName);
 			qw.param("projectToken", _projectToken);
 
@@ -381,6 +381,7 @@ bool FPZKClient::syncSelfStatus(float perCPUUsage)
 			qw.param("srvVersion", _registeredVersion);
 			qw.param("endpoint", _registeredEndpoint);
 			qw.param("cluster", _cluster);
+			qw.param("region", _region);
 
 			qw.param("connNum", connNum);
 			qw.param("perCPULoad", perCPULoad);
@@ -769,7 +770,7 @@ FPZKClientPtr FPZKClient::create(const std::string& fpzkSrvList, const std::stri
 	return FPZKClientPtr(new FPZKClient(servList, name, token));
 }
 
-bool FPZKClient::registerService(const std::string& serviceName, const std::string& cluster, const std::string& version, const std::string& endpoint, bool online)
+bool FPZKClient::registerService(const std::string& serviceName, const std::string& version, const std::string& cluster, const std::string& endpoint, bool online)
 {
 	std::string registeredName = serviceName;
 	if (registeredName.empty())
@@ -799,6 +800,8 @@ bool FPZKClient::registerService(const std::string& serviceName, const std::stri
 
 		if (!endpoint.empty())
 			_registeredEndpoint = endpoint;
+
+		_region = ServerInfo::getServerRegionName();
 	}
 	
 	_requireUnregistered = false;

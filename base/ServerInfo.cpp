@@ -104,7 +104,7 @@ const std::string& ServerInfo::getServerRegionName(){
 		}
 #ifdef HOST_PLATFORM_AWS
 		std::string zoneName = getServerZoneName();
-		_serverRegionName = zoneName.substr(0, zoneName.length()-3);    // remove zone suffix
+		_serverRegionName = zoneName.substr(0, zoneName.length()-1);    // remove zone suffix
 #elif HOST_PLATFORM_GCP
 		std::string zoneName = getServerZoneName();
 		_serverRegionName = zoneName.substr(0, zoneName.length()-3);    // remove zone suffix

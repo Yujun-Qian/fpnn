@@ -227,6 +227,7 @@ bool fpnn::getIPs(std::map<enum IPTypes, std::set<std::string>>& ipDict)
 	return true;
 }
 
+namespace fpnn {
 namespace NetworkUtil
 {
 	std::string getFirstIPAddress(enum IPTypes type)
@@ -245,6 +246,7 @@ namespace NetworkUtil
 
 	std::string getLocalIP4() { return getFirstIPAddress(IPv4_Local); }
 	std::string getPublicIP4() { return getFirstIPAddress(IPv4_Public); }
+}
 }
 
 #ifdef TEST_NETWORK_UTIL

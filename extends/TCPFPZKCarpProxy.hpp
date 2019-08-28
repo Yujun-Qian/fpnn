@@ -77,7 +77,8 @@ namespace fpnn
 				}
 
 				TCPClientPtr client = createTCPClient(_endpoints[index], connect);
-				result[client].insert(key);
+				if (client != nullptr) 
+					result[client].insert(key);
 			}
 
 			if (result.empty())
